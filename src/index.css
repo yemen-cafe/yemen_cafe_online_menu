@@ -1,3 +1,8 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +15,21 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+@font-face {
+  font-family: customFont;
+  src: url(./assets/There\ Brat.otf);
+}
+
+
+@keyframes slider {
+  0%{
+    transform: translateX(-100%)
+
+  }
+  100%{
+    transform: translateX(100%)
+
+
+  }
 }
