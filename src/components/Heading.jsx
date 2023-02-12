@@ -1,10 +1,7 @@
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import menemen from '../assets/mealImg/menemen.png';
-import teigRolle from '../assets/mealImg/teigRolle.png';
-import simitTeller from '../assets/mealImg/simitTeller.png';
-import oFrühstück from '../assets/mealImg/oFrühstück.png';
+import ImgCarousel from './ImgCarousel';
 
 const Heading = ({ heading }) => {
     const imgStyle = {
@@ -13,6 +10,7 @@ const Heading = ({ heading }) => {
     };
     return (
         <>
+            <div id={heading} />
             <Box
                 sx={{
                     height: '10vh',
@@ -32,7 +30,7 @@ const Heading = ({ heading }) => {
                     }}></div>
                 <Typography
                     fontFamily={'Permanent Marker, cursive'}
-                    variant="h4"
+                    variant="h5"
                     sx={{
                         // height: '100%',
                         display: 'flex',
@@ -51,17 +49,19 @@ const Heading = ({ heading }) => {
                         height: '0 px',
                     }}></div>
             </Box>
-            <Box
+            {/* <Box
                 sx={{
                     height: '10vh',
                     display: 'flex',
                     justifyContent: 'space-around',
+                    overflow: 'auto',
                 }}>
                 <img src={menemen} style={imgStyle} alt="" />
                 <img src={teigRolle} style={imgStyle} alt="" />
                 <img src={simitTeller} style={imgStyle} alt="" />
                 <img src={oFrühstück} style={imgStyle} alt="" />
-            </Box>
+            </Box> */}
+            <ImgCarousel />
         </>
     );
 };

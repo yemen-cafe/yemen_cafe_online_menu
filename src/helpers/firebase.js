@@ -92,7 +92,7 @@ const db = getFirestore();
 
 //get collection from firestore
 export const getMenu = async (colType) => {
-    const colRef = collection(db, colType);
+    const colRef = collection(db, colType.toLowerCase());
     const menu = [];
     try {
         const snapshot = await getDocs(colRef);
@@ -102,33 +102,57 @@ export const getMenu = async (colType) => {
     } catch (error) {
         console.log(error);
     }
+
     return menu;
 };
 
-// Add doc into collection
-/* export const addItem = async (e, values, navigate, authorPP) => {
-    e.preventDefault();
+export const updateItem = async (id, value, colType) => {
+    const docRef = doc(db, colType?.toLowerCase(), id);
+    const data = {
+        ...value,
+        allergene: value?.allergene,
+        inhalt: value?.inhalt,
+        extra: value?.extra ? value?.extra : [],
+    };
 
     try {
-        addDoc(colRef, {
-            title: values.title,
-            author: auth.currentUser.email,
-            authorPP,
-            imgURL: values.url,
-            text: values.text,
-            tag1: values.tag1,
-            tag2: values.tag2,
-            tag3: values.tag3,
-            date: new Date().toLocaleDateString('tr'),
-        });
-        toastSuccessNotify('Article Posted Successfully');
-        console.log('posted');
-        navigate('/');
+        await updateDoc(docRef, data);
+        console.log('SENT');
     } catch (error) {
-        toastFailNotify(`Something Went Wrong !!!`);
-        toastFailNotify(error.message);
+        console.log(error);
     }
 };
+
+export const addItem = async (e, value, colType) => {
+    const colRef = collection(db, colType?.toLowerCase());
+    const data = {
+        ...value,
+        allergene: value?.allergene,
+        inhalt: value?.inhalt,
+        extra: value?.extra ? value?.extra : [],
+    };
+
+    try {
+        addDoc(colRef, data);
+
+        console.log('posted');
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteItem = async (id, colType) => {
+    const docRef = doc(db, colType.toLowerCase(), id);
+
+    try {
+        deleteDoc(docRef);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// Add doc into collection
+/* 
 
 //delete doc from collection
 
@@ -166,27 +190,7 @@ export const getItem = async (id, setArticle) => {
     }
 };
 
-export const updateItem = async (e, id, values, navigate) => {
-    e.preventDefault();
-    const docRef = doc(db, 'Articles', id);
-    const data = {
-        title: values.title,
-        imgURL: values.imgURL,
-        text: values.text,
-        tag1: values.tag1,
-        tag2: values.tag2,
-        tag3: values.tag3,
-    };
 
-    try {
-        await updateDoc(docRef, data);
-        toastSuccessNotify('Artical Updated Successfully');
-        navigate('/');
-    } catch (error) {
-        toastFailNotify(`Something Went Wrong !!!`);
-        toastFailNotify(error.message);
-    }
-};
 
 export const userArticles = async (email, setArticles) => {
     const articleArray = [];

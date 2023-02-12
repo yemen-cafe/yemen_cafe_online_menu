@@ -5,7 +5,7 @@ import { userObserver } from '../helpers/firebase';
 const authContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState({});
+    const [currentUser, setCurrentUser] = useState(true);
 
     useEffect(() => {
         userObserver(setCurrentUser);

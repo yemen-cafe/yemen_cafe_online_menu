@@ -34,10 +34,29 @@ const Dashboard = (props) => {
             <Toolbar />
             <Divider />
             <List>
-                {['Frühstück', 'Grill', 'Send email', 'Drafts'].map(
-                    (text, index) => (
-                        <ListItem key={text} disablePadding>
-                            <ListItemButton>
+                {[
+                    'Frühstück',
+                    'Toast',
+                    'Sandwiches',
+                    'Hauptspeisen',
+                    'Pasta',
+                    'Salate',
+                    'Grill',
+                    'Kinder Menu',
+                ].map((text, index) => (
+                    <ListItem key={text} disablePadding>
+                        <a
+                            href={`#${text}`}
+                            style={{
+                                textDecoration: 'none',
+                                color: 'white',
+                                width: '100%',
+                            }}>
+                            <ListItemButton
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                }}>
                                 <ListItemText primary={text} />
                                 <Avatar
                                     sx={{
@@ -50,17 +69,7 @@ const Dashboard = (props) => {
                                     }
                                 />
                             </ListItemButton>
-                        </ListItem>
-                    )
-                )}
-            </List>
-            <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
+                        </a>
                     </ListItem>
                 ))}
             </List>

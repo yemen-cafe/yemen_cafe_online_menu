@@ -1,5 +1,5 @@
 import { Avatar, Box, Link, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import menu_bg from '../assets/img/menu_bg.jpg';
 import tiktok from '../assets/img/tiktok.jpg';
 import insta from '../assets/img/insta.png';
@@ -8,13 +8,25 @@ import facebook from '../assets/img/facebook.png';
 import { getMenu } from '../helpers/firebase';
 import MenuComp from '../components/MenuComp';
 
-const Home = () => {
+const Home = (frühstückRef) => {
     const [breakfastData, setBreakfastData] = useState([]);
     const [toastData, setToastData] = useState([]);
+    const [hauptspeisenData, setHauptspeisenData] = useState([]);
+    const [grillData, setGrillData] = useState([]);
+    const [pastaData, setPastaData] = useState([]);
+    const [salateData, setSalateData] = useState([]);
+    const [sandwichesData, setSandwichesData] = useState([]);
+    const [kinderMenuData, setKinderMenuData] = useState([]);
 
     useEffect(() => {
         getMenu('frühstück').then((res) => setBreakfastData(res));
         getMenu('toast').then((res) => setToastData(res));
+        getMenu('hauptspeisen').then((res) => setHauptspeisenData(res));
+        getMenu('grill').then((res) => setGrillData(res));
+        getMenu('pasta').then((res) => setPastaData(res));
+        getMenu('salate').then((res) => setSalateData(res));
+        getMenu('sandwiches').then((res) => setSandwichesData(res));
+        getMenu('Kinder menu').then((res) => setKinderMenuData(res));
     }, []);
 
     return (
@@ -124,6 +136,13 @@ const Home = () => {
 
             <MenuComp data={breakfastData} heading={'Frühstück'} />
             <MenuComp data={toastData} heading={'Toast'} />
+            <MenuComp data={sandwichesData} heading={'Sandwiches'} />
+            <MenuComp data={hauptspeisenData} heading={'Hauptspeisen'} />
+            <MenuComp data={pastaData} heading={'Pasta'} />
+            {/* <span>slkdjflsadföjsf</span> */}
+            <MenuComp data={salateData} heading={'Salate'} />
+            <MenuComp data={grillData} heading={'Grill'} />
+            <MenuComp data={kinderMenuData} heading={'Kinder Menu'} />
         </Box>
     );
 };
