@@ -113,6 +113,7 @@ export const updateItem = async (id, value, colType) => {
         allergene: value?.allergene,
         inhalt: value?.inhalt,
         extra: value?.extra ? value?.extra : [],
+        menu: value?.menu,
     };
 
     try {

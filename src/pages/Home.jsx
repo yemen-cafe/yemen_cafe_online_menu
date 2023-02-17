@@ -28,9 +28,12 @@ const Home = (frühstückRef) => {
         getMenu('sandwiches').then((res) => setSandwichesData(res));
         getMenu('Kinder menu').then((res) => setKinderMenuData(res));
     }, []);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
-        <Box>
+        <Box sx={{ backgroundColor: '#fff' }}>
             <Box
                 sx={{
                     width: '100%',

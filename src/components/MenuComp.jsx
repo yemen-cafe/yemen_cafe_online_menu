@@ -5,6 +5,7 @@ import { useAuthContext } from '../context/AuthProvider';
 import { getFrühstückMenu } from '../helpers/firebase';
 import AddModal from './AddModal';
 import EditModal from './EditModal';
+import EditModal2 from './EditModal2';
 import Heading from './Heading';
 
 const MenuItem = ({ item, heading }) => {
@@ -19,8 +20,11 @@ const MenuItem = ({ item, heading }) => {
                 fontFamily: 'Crete Round',
                 border: '1px solid #00000034',
                 padding: '1rem 0',
+                backgroundColor: '#fff',
                 boxShadow:
                     'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
+                borderTop: '0.2rem solid #000',
+                borderBottom: '0.2rem solid #000',
             }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography
@@ -96,29 +100,48 @@ const MenuItem = ({ item, heading }) => {
                 </span>
             </Box>
             <Box>
-                {extra?.map((x, i) => (
-                    <div
-                        key={i}
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                        }}>
-                        {x.name != '' && (
-                            <Typography
-                                sx={{ fontWeight: '600', fontSize: '0.8rem' }}>
-                                ⫸ {x.name}
-                            </Typography>
-                        )}
-                        {x.preis != '' && (
-                            <Typography
-                                sx={{ fontWeight: '800', fontSize: '0.8rem' }}>
-                                {menu ? `Menü ${x.preis}` : `+ ${x.preis}`} €
-                            </Typography>
-                        )}
-                    </div>
-                ))}
+                {extra?.map(
+                    (x, i) =>
+                        x?.name != '' && (
+                            <div
+                                key={i}
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    color: 'white',
+                                    backgroundColor: '#000',
+                                    padding: '4px',
+                                    borderRadius: '0.3rem',
+                                }}>
+                                {x.name != '' && (
+                                    <Typography
+                                        sx={{
+                                            fontWeight: '600',
+                                            fontSize: '0.8rem',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                        }}>
+                                        ⫸ {x.name}
+                                    </Typography>
+                                )}
+                                {x.preis != '' && (
+                                    <Typography
+                                        sx={{
+                                            fontWeight: '800',
+                                            fontSize: '0.8rem',
+                                        }}>
+                                        {menu
+                                            ? `Menü ${x.preis}`
+                                            : `+ ${x.preis}`}{' '}
+                                        €
+                                    </Typography>
+                                )}
+                            </div>
+                        )
+                )}
             </Box>
-            {!currentUser && <EditModal heading={heading} item={item} />}
+            {!currentUser && <AddModal heading={heading} item={item} />}
+            {/* {!currentUser && <EditModal heading={heading} item={item} />} */}
         </Container>
     );
 };
@@ -142,7 +165,7 @@ const MenuComp = ({ heading, data }) => {
                         />
                     ))}
                 </Box>
-                <AddModal heading={heading} />
+                <AddModal heading={heading} item={''} />
             </Box>
         </>
     );

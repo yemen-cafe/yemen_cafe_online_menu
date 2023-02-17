@@ -2,10 +2,11 @@ import { Box } from '@mui/material';
 
 const CarouselItem = ({ item }) => {
     const imgStyle = {
-        height: '30vh',
+        height: '25vh',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         display: 'flex',
+        width: '50%',
     };
 
     return (

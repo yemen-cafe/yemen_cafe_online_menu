@@ -18,6 +18,7 @@ const Heading = ({ heading }) => {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     overflow: 'hidden',
+                    backgroundColor: 'white',
                 }}>
                 <div
                     style={{
@@ -32,7 +33,6 @@ const Heading = ({ heading }) => {
                     fontFamily={'Permanent Marker, cursive'}
                     variant="h5"
                     sx={{
-                        // height: '100%',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -61,7 +61,7 @@ const Heading = ({ heading }) => {
                 <img src={simitTeller} style={imgStyle} alt="" />
                 <img src={oFrühstück} style={imgStyle} alt="" />
             </Box> */}
-            <ImgCarousel />
+            <ImgCarousel heading={heading} />
         </>
     );
 };
