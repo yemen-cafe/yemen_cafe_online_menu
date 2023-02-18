@@ -124,18 +124,18 @@ export const updateItem = async (id, value, colType) => {
     }
 };
 
-export const addItem = async (e, value, colType) => {
+export const addItem = async (e, value, colType, setData, data) => {
     const colRef = collection(db, colType?.toLowerCase());
-    const data = {
+    const newData = {
         ...value,
-        allergene: value?.allergene,
-        inhalt: value?.inhalt,
+        allergene: value?.allergene || '',
+        inhalt: value?.inhalt || '',
         extra: value?.extra ? value?.extra : [],
     };
 
     try {
-        addDoc(colRef, data);
-
+        addDoc(colRef, newData);
+        setData([...data, newData]);
         console.log('posted');
     } catch (error) {
         console.log(error);

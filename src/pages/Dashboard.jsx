@@ -5,19 +5,31 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-// import InboxIcon from '@mui/icons-material/MoveToInbox';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
+
 import ListItemText from '@mui/material/ListItemText';
-// import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Avatar } from '@mui/material';
-
 import { Outlet } from 'react-router-dom';
+import frühstück from '../assets/mealImg/menemen.png';
+import toast from '../assets/mealImg/toast1.png';
+import sandwich from '../assets/mealImg/clubsandwich-1.jpg';
+import haupt from '../assets/mealImg/haupt2.jpg';
+import pasta from '../assets/mealImg/pasta3.jpg';
+import salat from '../assets/mealImg/salat1.jpg';
+import grill from '../assets/mealImg/kinder5.jpg';
+import beilage from '../assets/mealImg/beilage1.jpeg';
+import heiss from '../assets/mealImg/herbal1.jpg';
+import t_kaffee from '../assets/mealImg/t-kaffee2.jpg';
+import kunefe from '../assets/mealImg/kinder3.jpg';
+import dessert from '../assets/mealImg/dessert4.jpg';
+import kaffee from '../assets/mealImg/kaffee6.jpg';
+import cocktail from '../assets/mealImg/kinder4.jpg';
+import kaltGet from '../assets/mealImg/kaltGet4.jpg';
 
 const drawerWidth = 240;
 
@@ -35,18 +47,30 @@ const Dashboard = (props) => {
             <Divider />
             <List>
                 {[
-                    'Frühstück',
-                    'Toast',
-                    'Sandwiches',
-                    'Hauptspeisen',
-                    'Pasta',
-                    'Salate',
-                    'Grill',
-                    'Kinder Menu',
-                ].map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                    { name: 'Frühstück', img: frühstück },
+                    { name: 'Toast', img: toast },
+                    { name: 'Sandwiches', img: sandwich },
+                    { name: 'Hauptspeisen', img: haupt },
+                    { name: 'Pasta', img: pasta },
+                    { name: 'Salate', img: salat },
+                    { name: 'Grill', img: grill },
+                    { name: 'Kinder Menu', img: grill },
+                    { name: 'Beilagen', img: beilage },
+                    { name: 'Heißgetränke', img: heiss },
+                    { name: 'Beilagen', img: beilage },
+                    { name: 'Türkische Kaffee', img: t_kaffee },
+                    { name: 'Künefe & Katmer', img: kunefe },
+                    { name: 'Desserts', img: dessert },
+                    { name: 'Cocktail & Shake', img: cocktail },
+                    { name: 'Kaffee Sorten', img: kaffee },
+                    { name: 'Kalte Getränke', img: kaltGet },
+                ].map((x, index) => (
+                    <ListItem
+                        key={index}
+                        onClick={() => setMobileOpen(false)}
+                        disablePadding>
                         <a
-                            href={`#${text}`}
+                            href={`#${x.name}`}
                             style={{
                                 textDecoration: 'none',
                                 color: 'white',
@@ -54,19 +78,17 @@ const Dashboard = (props) => {
                             }}>
                             <ListItemButton
                                 sx={{
+                                    margin: '0',
                                     display: 'flex',
                                     justifyContent: 'space-between',
                                 }}>
-                                <ListItemText primary={text} />
+                                <ListItemText primary={'⩥' + x.name} />
                                 <Avatar
                                     sx={{
                                         width: '3rem',
                                         height: '3rem',
-                                        border: '1px solid red',
                                     }}
-                                    src={
-                                        'https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/1:1/w_2560%2Cc_limit/the-ultimate-hamburger.jpg'
-                                    }
+                                    src={x.img}
                                 />
                             </ListItemButton>
                         </a>

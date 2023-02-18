@@ -414,7 +414,7 @@ const style = {
     overflow: 'auto',
 };
 
-export default function AddModal({ item, heading }) {
+export default function AddModal({ item, heading, setData, data }) {
     const { allergene, extra, inhalt, id, preise, title } = item;
     const { currentUser } = useAuthContext();
 
@@ -455,12 +455,12 @@ export default function AddModal({ item, heading }) {
         if (item?.id) {
             updateItem(id, inputVal, heading);
         } else {
-            addItem(e, inputVal, heading);
+            addItem(e, inputVal, heading, setData, data);
         }
         setInputVal(initialState);
         handleClose();
     };
-    console.log(inputVal);
+
     return (
         <div style={{ padding: '0.5rem' }}>
             {item?.id && (

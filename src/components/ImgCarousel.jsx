@@ -40,17 +40,55 @@ import grill3 from '../assets/mealImg/grill3.jpg';
 import grill4 from '../assets/mealImg/grill4.jpg';
 import grill5 from '../assets/mealImg/grill5.jpg';
 import grill6 from '../assets/mealImg/grill6.jpg';
+import herbal1 from '../assets/mealImg/herbal1.jpg';
+import herbal2 from '../assets/mealImg/herbal2.jpg';
+import herbal3 from '../assets/mealImg/herbal3.jpg';
+import herbal4 from '../assets/mealImg/herbal4.jpg';
+import herbal5 from '../assets/mealImg/herbal5.jpg';
+import herbal6 from '../assets/mealImg/herbal6.jpg';
 import kinder1 from '../assets/mealImg/kinder1.jpg';
 import kinder2 from '../assets/mealImg/kinder2.jpg';
 import kinder3 from '../assets/mealImg/kinder3.jpg';
 import kinder4 from '../assets/mealImg/kinder4.jpg';
 import kinder5 from '../assets/mealImg/kinder5.jpg';
 import kinder6 from '../assets/mealImg/kinder6.jpg';
+import kaffee1 from '../assets/mealImg/kaffee1.jpg';
+import kaffee2 from '../assets/mealImg/kaffee2.jpg';
+import kaffee3 from '../assets/mealImg/kaffee3.jpg';
+import kaffee4 from '../assets/mealImg/kaffee4.jpg';
+import kaffee5 from '../assets/mealImg/kaffee5.jpg';
+import kaffee6 from '../assets/mealImg/kaffee6.jpg';
+import dessert1 from '../assets/mealImg/dessert1.jpg';
+import dessert2 from '../assets/mealImg/dessert2.jpg';
+import dessert3 from '../assets/mealImg/dessert3.jpg';
+import dessert4 from '../assets/mealImg/dessert4.jpg';
+import dessert5 from '../assets/mealImg/dessert5.jpg';
+import dessert6 from '../assets/mealImg/dessert6.jpg';
+import kaltGet1 from '../assets/mealImg/kaltGet1.jpg';
+import kaltGet2 from '../assets/mealImg/kaltGet2.jpg';
+import kaltGet3 from '../assets/mealImg/kaltGet3.jpg';
+import kaltGet4 from '../assets/mealImg/kaltGet4.jpg';
+import kaltGet5 from '../assets/mealImg/kaltGet5.jpg';
+import kaltGet6 from '../assets/mealImg/kaltGet6.jpg';
+import beilage1 from '../assets/mealImg/beilage1.jpeg';
+import beilage2 from '../assets/mealImg/beilage2.jpeg';
+import beilage3 from '../assets/mealImg/beilage3.jpg';
+import beilage4 from '../assets/mealImg/beilage4.jpg';
+import beilage5 from '../assets/mealImg/beilage5.jpg';
+import beilage6 from '../assets/mealImg/beilage6.jpg';
+import t_kaffee1 from '../assets/mealImg/t-kaffee1.jpg';
+import t_kaffee2 from '../assets/mealImg/t-kaffee2.jpg';
+import t_kaffee3 from '../assets/mealImg/t-kaffee3.png';
+import t_kaffee4 from '../assets/mealImg/t-kaffee4.jpg';
+import t_kaffee5 from '../assets/mealImg/t-kaffee5.jpg';
+import t_kaffee6 from '../assets/mealImg/t-kaffee6.jpg';
 import React from 'react';
 import CarouselItem from './CarouselItem';
 import Carousel from 'react-material-ui-carousel';
 // import { Carousel } from 'react-bootstrap';
 const toastArr = [toast1, toast2, toast3, toast4, toast5, toast6];
+const herbalArr = [herbal1, herbal2, herbal3, herbal4, herbal5, herbal6];
+const kaffeeArr = [kaffee1, kaffee2, kaffee3, kaffee4, kaffee5, kaffee6];
 const frühstückArr = [
     frühstück1,
     frühstück2,
@@ -72,6 +110,24 @@ const pastaArr = [pasta1, pasta2, pasta3, pasta4, pasta5, pasta6];
 const salatArr = [salat1, salat2, salat3, salat4, salat5, salat6];
 const grillArr = [grill1, grill2, grill3, grill4, grill5, grill6];
 const kinderArr = [kinder1, kinder2, kinder3, kinder4, kinder5, kinder6];
+const dessertArr = [dessert1, dessert2, dessert3, dessert4, dessert5, dessert6];
+const kaltGetArr = [kaltGet1, kaltGet2, kaltGet3, kaltGet4, kaltGet5, kaltGet6];
+const beilagenArr = [
+    beilage1,
+    beilage2,
+    beilage3,
+    beilage4,
+    beilage5,
+    beilage6,
+];
+const tKaffeeArr = [
+    t_kaffee1,
+    t_kaffee2,
+    t_kaffee3,
+    t_kaffee4,
+    t_kaffee5,
+    t_kaffee6,
+];
 
 const ImgCarousel = ({ heading }) => {
     const slideOrganizer = () => {
@@ -92,6 +148,20 @@ const ImgCarousel = ({ heading }) => {
             data = grillArr;
         } else if (heading === 'Kinder Menu') {
             data = kinderArr;
+        } else if (heading === 'Beilagen') {
+            data = beilagenArr;
+        } else if (heading === 'Türkische Kaffee') {
+            data = tKaffeeArr;
+        } else if (heading === 'Desserts') {
+            data = dessertArr;
+        } else if (heading === 'Heißgetränke') {
+            data = herbalArr;
+        } else if (heading === 'Kalte Getränke') {
+            data = kaltGetArr;
+        } else if (heading === 'Kaffee Sorten') {
+            data = kaffeeArr;
+        } else if (heading === 'Heißgetränke') {
+            data = herbalArr;
         }
         const slide1 = data.slice(0, 2);
         const slide2 = data.slice(2, 4);

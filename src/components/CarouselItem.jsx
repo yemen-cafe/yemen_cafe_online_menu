@@ -11,7 +11,13 @@ const CarouselItem = ({ item }) => {
 
     return (
         <>
-            <Box sx={{ display: 'flex', columnGap: '5px', cursor: 'pointer' }}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    columnGap: '5px',
+                    cursor: 'pointer',
+                    width: '100%',
+                }}>
                 {item.map((image, i) => {
                     return (
                         <Box

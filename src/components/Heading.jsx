@@ -22,10 +22,10 @@ const Heading = ({ heading }) => {
                 }}>
                 <div
                     style={{
-                        borderTop: '60px solid black',
-                        borderLeft: '60px solid black',
-                        borderRight: '60px solid transparent',
-                        borderBottom: '60px solid transparent',
+                        borderTop: '50px solid black',
+                        borderLeft: '50px solid black',
+                        borderRight: '50px solid transparent',
+                        borderBottom: '50px solid transparent',
                         width: '0 px',
                         height: '0 px',
                     }}></div>
@@ -41,10 +41,10 @@ const Heading = ({ heading }) => {
                 </Typography>
                 <div
                     style={{
-                        borderRight: '60px solid black',
-                        borderBottom: '60px solid black',
-                        borderTop: '60px solid transparent',
-                        borderLeft: '60px solid transparent',
+                        borderRight: '50px solid black',
+                        borderBottom: '50px solid black',
+                        borderTop: '50px solid transparent',
+                        borderLeft: '50px solid transparent',
                         width: '0 px',
                         height: '0 px',
                     }}></div>

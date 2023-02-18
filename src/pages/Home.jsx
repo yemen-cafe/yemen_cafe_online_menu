@@ -1,14 +1,13 @@
 import { Avatar, Box, Link, Typography } from '@mui/material';
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import menu_bg from '../assets/img/menu_bg.jpg';
 import tiktok from '../assets/img/tiktok.jpg';
 import insta from '../assets/img/insta.png';
 import facebook from '../assets/img/facebook.png';
-
 import { getMenu } from '../helpers/firebase';
 import MenuComp from '../components/MenuComp';
 
-const Home = (frühstückRef) => {
+const Home = () => {
     const [breakfastData, setBreakfastData] = useState([]);
     const [toastData, setToastData] = useState([]);
     const [hauptspeisenData, setHauptspeisenData] = useState([]);
@@ -17,6 +16,14 @@ const Home = (frühstückRef) => {
     const [salateData, setSalateData] = useState([]);
     const [sandwichesData, setSandwichesData] = useState([]);
     const [kinderMenuData, setKinderMenuData] = useState([]);
+    const [beilagenData, setBeilagenData] = useState([]);
+    const [turkischeKaffeeData, setTurkischeKaffeeData] = useState([]);
+    const [heissGetranke, setHeissGetranke] = useState([]);
+    const [cocktailAndShake, setCocktailAndShake] = useState([]);
+    const [kalteGetranke, setKalteGetranke] = useState([]);
+    const [specialKaffee, setSpecialKaffee] = useState([]);
+    const [desserts, setDesserts] = useState([]);
+    const [kunefe, setKunefe] = useState([]);
 
     useEffect(() => {
         getMenu('frühstück').then((res) => setBreakfastData(res));
@@ -27,13 +34,22 @@ const Home = (frühstückRef) => {
         getMenu('salate').then((res) => setSalateData(res));
         getMenu('sandwiches').then((res) => setSandwichesData(res));
         getMenu('Kinder menu').then((res) => setKinderMenuData(res));
+        getMenu('beilagen').then((res) => setBeilagenData(res));
+        getMenu('türkische kaffee').then((res) => setTurkischeKaffeeData(res));
+        getMenu('heißgetränke').then((res) => setHeissGetranke(res));
+        getMenu('cocktail & shake').then((res) => setCocktailAndShake(res));
+        getMenu('kalte getränke').then((res) => setKalteGetranke(res));
+        getMenu('kaffee sorten').then((res) => setSpecialKaffee(res));
+        getMenu('desserts').then((res) => setDesserts(res));
+        getMenu('künefe & katmer').then((res) => setKunefe(res));
     }, []);
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
     return (
-        <Box sx={{ backgroundColor: '#fff' }}>
+        <Box sx={{ backgroundColor: '#000' }}>
             <Box
                 sx={{
                     width: '100%',
@@ -51,6 +67,7 @@ const Home = (frühstückRef) => {
                         justifyContent: 'space-between',
                         flexDirection: 'column',
                         height: '100%',
+                        // eslint-disable-next-line
                         background: 'rgb(0,0,0)',
                         background:
                             'linear-gradient(180deg, rgba(0,0,0,0.7819502801120448) 40%, rgba(0,0,0,0.41220238095238093) 100%)',
@@ -137,15 +154,90 @@ const Home = (frühstückRef) => {
             </Box>
             {/* Breakfast */}
 
-            <MenuComp data={breakfastData} heading={'Frühstück'} />
-            <MenuComp data={toastData} heading={'Toast'} />
-            <MenuComp data={sandwichesData} heading={'Sandwiches'} />
-            <MenuComp data={hauptspeisenData} heading={'Hauptspeisen'} />
-            <MenuComp data={pastaData} heading={'Pasta'} />
-            {/* <span>slkdjflsadföjsf</span> */}
-            <MenuComp data={salateData} heading={'Salate'} />
-            <MenuComp data={grillData} heading={'Grill'} />
-            <MenuComp data={kinderMenuData} heading={'Kinder Menu'} />
+            <MenuComp
+                data={breakfastData}
+                setData={setBreakfastData}
+                heading={'Frühstück'}
+            />
+            <MenuComp
+                data={toastData}
+                setData={setToastData}
+                heading={'Toast'}
+            />
+            <MenuComp
+                data={sandwichesData}
+                setData={setSandwichesData}
+                heading={'Sandwiches'}
+            />
+            <MenuComp
+                data={hauptspeisenData}
+                setData={setHauptspeisenData}
+                heading={'Hauptspeisen'}
+            />
+            <MenuComp
+                data={pastaData}
+                setData={setPastaData}
+                heading={'Pasta'}
+            />
+
+            <MenuComp
+                data={salateData}
+                setData={setSalateData}
+                heading={'Salate'}
+            />
+            <MenuComp
+                data={grillData}
+                setData={setGrillData}
+                heading={'Grill'}
+            />
+            <MenuComp
+                data={kinderMenuData}
+                setData={setKinderMenuData}
+                heading={'Kinder Menu'}
+            />
+            <MenuComp
+                data={kunefe}
+                setData={setKunefe}
+                heading={'Künefe & Katmer'}
+            />
+
+            <MenuComp
+                data={desserts}
+                setData={setDesserts}
+                heading={'Desserts'}
+            />
+
+            <MenuComp
+                data={beilagenData}
+                setData={setBeilagenData}
+                heading={'Beilagen'}
+            />
+
+            <MenuComp
+                data={turkischeKaffeeData}
+                setData={setTurkischeKaffeeData}
+                heading={'Türkische Kaffee'}
+            />
+            <MenuComp
+                data={heissGetranke}
+                setData={setHeissGetranke}
+                heading={'Heißgetränke'}
+            />
+            <MenuComp
+                data={cocktailAndShake}
+                setData={setCocktailAndShake}
+                heading={'Cocktail & Shake'}
+            />
+            <MenuComp
+                data={kalteGetranke}
+                setData={setKalteGetranke}
+                heading={'Kalte Getränke'}
+            />
+            <MenuComp
+                data={specialKaffee}
+                setData={setSpecialKaffee}
+                heading={'Kaffee Sorten'}
+            />
         </Box>
     );
 };

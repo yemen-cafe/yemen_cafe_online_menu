@@ -5,8 +5,9 @@ import { useAuthContext } from '../context/AuthProvider';
 import { getFrühstückMenu } from '../helpers/firebase';
 import AddModal from './AddModal';
 import EditModal from './EditModal';
-import EditModal2 from './EditModal2';
+
 import Heading from './Heading';
+import SpecialMeal from './XXMenuItem';
 
 const MenuItem = ({ item, heading }) => {
     const { allergene, title, extra, preise, inhalt, menu } = item;
@@ -19,11 +20,11 @@ const MenuItem = ({ item, heading }) => {
                 flexDirection: 'column',
                 fontFamily: 'Crete Round',
                 border: '1px solid #00000034',
-                padding: '1rem 0',
+                padding: '0.5rem 0.5rem',
                 backgroundColor: '#fff',
                 boxShadow:
                     'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
-                borderTop: '0.2rem solid #000',
+
                 borderBottom: '0.2rem solid #000',
             }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -40,16 +41,23 @@ const MenuItem = ({ item, heading }) => {
                         fontFamily: 'century gothic',
                     }}>
                     {title}{' '}
-                    <span
-                        style={{
-                            fontSize: '0.6rem',
-                            display: 'flex',
-                            alignItems: 'center',
-
-                            minWidth: '45px',
-                        }}>
-                        {allergene}
-                    </span>
+                    {allergene && allergene != '' && (
+                        <span
+                            style={{
+                                fontSize: '0.6rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: '#00000089',
+                                padding: '3px',
+                                borderRadius: '5px',
+                                color: 'white',
+                                minWidth: '45px',
+                                marginLeft: '3px',
+                            }}>
+                            {allergene}
+                        </span>
+                    )}
                 </Typography>
                 <Box>
                     <Box
@@ -99,7 +107,13 @@ const MenuItem = ({ item, heading }) => {
                     {inhalt}
                 </span>
             </Box>
-            <Box>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '5px',
+                    // justifyContent: 'center',
+                }}>
                 {extra?.map(
                     (x, i) =>
                         x?.name != '' && (
@@ -108,13 +122,17 @@ const MenuItem = ({ item, heading }) => {
                                 style={{
                                     display: 'flex',
                                     justifyContent: 'space-between',
+                                    columnGap: '10px',
                                     color: 'white',
                                     backgroundColor: '#000',
                                     padding: '4px',
                                     borderRadius: '0.3rem',
+                                    // minWidth: '75%',
+                                    width: '100%',
                                 }}>
                                 {x.name != '' && (
                                     <Typography
+                                        textAlign={'left'}
                                         sx={{
                                             fontWeight: '600',
                                             fontSize: '0.8rem',
@@ -129,6 +147,8 @@ const MenuItem = ({ item, heading }) => {
                                         sx={{
                                             fontWeight: '800',
                                             fontSize: '0.8rem',
+                                            wordBreak: 'keep-all',
+                                            minWidth: '4rem',
                                         }}>
                                         {menu
                                             ? `Menü ${x.preis}`
@@ -140,13 +160,13 @@ const MenuItem = ({ item, heading }) => {
                         )
                 )}
             </Box>
-            {!currentUser && <AddModal heading={heading} item={item} />}
+            {currentUser && <AddModal heading={heading} item={item} />}
             {/* {!currentUser && <EditModal heading={heading} item={item} />} */}
         </Container>
     );
 };
 
-const MenuComp = ({ heading, data }) => {
+const MenuComp = ({ heading, data, setData }) => {
     return (
         <>
             <Box>
@@ -155,17 +175,18 @@ const MenuComp = ({ heading, data }) => {
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
-                        rowGap: '10px',
+                        rowGap: '5px',
                     }}>
-                    {data?.map((item) => (
-                        <MenuItem
-                            key={item?.id}
-                            heading={heading}
-                            item={item}
-                        />
+                    {data?.map((item, i) => (
+                        <MenuItem key={i} heading={heading} item={item} />
                     ))}
                 </Box>
-                <AddModal heading={heading} item={''} />
+                <AddModal
+                    heading={heading}
+                    data={data}
+                    setData={setData}
+                    item={''}
+                />
             </Box>
         </>
     );
