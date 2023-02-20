@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -30,13 +31,15 @@ import dessert from '../assets/mealImg/dessert4.jpg';
 import kaffee from '../assets/mealImg/kaffee6.jpg';
 import cocktail from '../assets/mealImg/kinder4.jpg';
 import kaltGet from '../assets/mealImg/kaltGet4.jpg';
+import { logout } from '../helpers/firebase';
+import { useAuthContext } from '../context/AuthProvider';
 
 const drawerWidth = 240;
 
 const Dashboard = (props) => {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-
+    const { currentUser } = useAuthContext();
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -57,7 +60,7 @@ const Dashboard = (props) => {
                     { name: 'Kinder Menu', img: grill },
                     { name: 'Beilagen', img: beilage },
                     { name: 'Heißgetränke', img: heiss },
-                    { name: 'Beilagen', img: beilage },
+
                     { name: 'Türkische Kaffee', img: t_kaffee },
                     { name: 'Künefe & Katmer', img: kunefe },
                     { name: 'Desserts', img: dessert },
@@ -111,22 +114,32 @@ const Dashboard = (props) => {
                     ml: { sm: `${drawerWidth}px` },
                     backgroundColor: 'black',
                 }}>
-                <Toolbar>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}>
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography
-                        variant="h3"
-                        fontFamily={'customFont'}
-                        noWrap
-                        component="div">
-                        YEMEN CAFE
-                    </Typography>
+                <Toolbar
+                    sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Box sx={{ display: 'flex' }}>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            sx={{ mr: 2, display: { sm: 'none' } }}>
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography
+                            variant="h3"
+                            fontFamily={'customFont'}
+                            noWrap
+                            component="div">
+                            YEMEN CAFE
+                        </Typography>
+                    </Box>
+                    {currentUser && (
+                        <IconButton
+                            onClick={() => logout()}
+                            sx={{ backgroundColor: '#580404ac' }}>
+                            <LogoutIcon sx={{ color: 'white' }} />
+                        </IconButton>
+                    )}
                 </Toolbar>
             </AppBar>
             <Box

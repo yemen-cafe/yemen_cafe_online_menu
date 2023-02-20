@@ -1,13 +1,11 @@
-import { Button, Container, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { forwardRef, useEffect, useState } from 'react';
+import React from 'react';
 import { useAuthContext } from '../context/AuthProvider';
-import { getFrühstückMenu } from '../helpers/firebase';
+
 import AddModal from './AddModal';
-import EditModal from './EditModal';
 
 import Heading from './Heading';
-import SpecialMeal from './XXMenuItem';
 
 const MenuItem = ({ item, heading }) => {
     const { allergene, title, extra, preise, inhalt, menu } = item;
@@ -41,7 +39,7 @@ const MenuItem = ({ item, heading }) => {
                         fontFamily: 'century gothic',
                     }}>
                     {title}{' '}
-                    {allergene && allergene != '' && (
+                    {allergene && allergene !== '' && (
                         <span
                             style={{
                                 fontSize: '0.6rem',
@@ -67,7 +65,7 @@ const MenuItem = ({ item, heading }) => {
                         }}>
                         {preise?.map(
                             (x, i) =>
-                                x != '' && (
+                                x !== '' && (
                                     <div
                                         key={i}
                                         style={{
@@ -116,7 +114,7 @@ const MenuItem = ({ item, heading }) => {
                 }}>
                 {extra?.map(
                     (x, i) =>
-                        x?.name != '' && (
+                        x?.name !== '' && (
                             <div
                                 key={i}
                                 style={{
@@ -130,7 +128,7 @@ const MenuItem = ({ item, heading }) => {
                                     // minWidth: '75%',
                                     width: '100%',
                                 }}>
-                                {x.name != '' && (
+                                {x.name !== '' && (
                                     <Typography
                                         textAlign={'left'}
                                         sx={{
@@ -142,7 +140,7 @@ const MenuItem = ({ item, heading }) => {
                                         ⫸ {x.name}
                                     </Typography>
                                 )}
-                                {x.preis != '' && (
+                                {x.preis !== '' && (
                                     <Typography
                                         sx={{
                                             fontWeight: '800',
@@ -161,12 +159,12 @@ const MenuItem = ({ item, heading }) => {
                 )}
             </Box>
             {currentUser && <AddModal heading={heading} item={item} />}
-            {/* {!currentUser && <EditModal heading={heading} item={item} />} */}
         </Container>
     );
 };
 
 const MenuComp = ({ heading, data, setData }) => {
+    const { currentUser } = useAuthContext();
     return (
         <>
             <Box>
@@ -181,12 +179,15 @@ const MenuComp = ({ heading, data, setData }) => {
                         <MenuItem key={i} heading={heading} item={item} />
                     ))}
                 </Box>
-                <AddModal
-                    heading={heading}
-                    data={data}
-                    setData={setData}
-                    item={''}
-                />
+
+                {currentUser && (
+                    <AddModal
+                        heading={heading}
+                        data={data}
+                        setData={setData}
+                        item={''}
+                    />
+                )}
             </Box>
         </>
     );

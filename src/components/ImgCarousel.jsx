@@ -70,6 +70,18 @@ import kaltGet3 from '../assets/mealImg/kaltGet3.jpg';
 import kaltGet4 from '../assets/mealImg/kaltGet4.jpg';
 import kaltGet5 from '../assets/mealImg/kaltGet5.jpg';
 import kaltGet6 from '../assets/mealImg/kaltGet6.jpg';
+import kunefe1 from '../assets/mealImg/kunefe1.jpg';
+import kunefe2 from '../assets/mealImg/kunefe2.jpg';
+import kunefe3 from '../assets/mealImg/kunefe3.jpg';
+import kunefe4 from '../assets/mealImg/kunefe4.jpeg';
+import kunefe5 from '../assets/mealImg/kunefe5.jpg';
+import kunefe6 from '../assets/mealImg/kunefe6.jpg';
+import cocktail1 from '../assets/mealImg/cocktail1.jpg';
+import cocktail2 from '../assets/mealImg/cocktail2.jpg';
+import cocktail3 from '../assets/mealImg/cocktail3.jpg';
+import cocktail4 from '../assets/mealImg/cocktail4.jpg';
+import cocktail5 from '../assets/mealImg/cocktail5.jpg';
+import cocktail6 from '../assets/mealImg/cocktail6.jpg';
 import beilage1 from '../assets/mealImg/beilage1.jpeg';
 import beilage2 from '../assets/mealImg/beilage2.jpeg';
 import beilage3 from '../assets/mealImg/beilage3.jpg';
@@ -89,6 +101,7 @@ import Carousel from 'react-material-ui-carousel';
 const toastArr = [toast1, toast2, toast3, toast4, toast5, toast6];
 const herbalArr = [herbal1, herbal2, herbal3, herbal4, herbal5, herbal6];
 const kaffeeArr = [kaffee1, kaffee2, kaffee3, kaffee4, kaffee5, kaffee6];
+const kunefeArr = [kunefe1, kunefe2, kunefe3, kunefe4, kunefe5, kunefe6];
 const frühstückArr = [
     frühstück1,
     frühstück2,
@@ -107,6 +120,14 @@ const sandwichArr = [
 ];
 const hauptspeisenArr = [haupt1, haupt2, haupt3, haupt4, haupt5, haupt6];
 const pastaArr = [pasta1, pasta2, pasta3, pasta4, pasta5, pasta6];
+const cocktailArr = [
+    cocktail1,
+    cocktail2,
+    cocktail3,
+    cocktail4,
+    cocktail5,
+    cocktail6,
+];
 const salatArr = [salat1, salat2, salat3, salat4, salat5, salat6];
 const grillArr = [grill1, grill2, grill3, grill4, grill5, grill6];
 const kinderArr = [kinder1, kinder2, kinder3, kinder4, kinder5, kinder6];
@@ -162,6 +183,10 @@ const ImgCarousel = ({ heading }) => {
             data = kaffeeArr;
         } else if (heading === 'Heißgetränke') {
             data = herbalArr;
+        } else if (heading === 'Künefe & Katmer') {
+            data = kunefeArr;
+        } else if (heading === 'Cocktail & Shake') {
+            data = cocktailArr;
         }
         const slide1 = data.slice(0, 2);
         const slide2 = data.slice(2, 4);

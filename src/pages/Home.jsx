@@ -68,7 +68,7 @@ const Home = () => {
                         flexDirection: 'column',
                         height: '100%',
                         // eslint-disable-next-line
-                        background: 'rgb(0,0,0)',
+                        backgroundColor: 'rgb(0,0,0)',
                         background:
                             'linear-gradient(180deg, rgba(0,0,0,0.7819502801120448) 40%, rgba(0,0,0,0.41220238095238093) 100%)',
                         position: 'absolute',
