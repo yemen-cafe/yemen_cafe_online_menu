@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 
 const CarouselItem = ({ item }) => {
     const imgStyle = {
-        height: '25vh',
+        height: { xs: '25vh', sm: '27vh', md: '40' },
         backgroundPosition: 'center',
         backgroundSize: 'cover',
         display: 'flex',

@@ -10,7 +10,6 @@ import {
     TextField,
 } from '@mui/material';
 import { addItem, deleteItem, updateItem } from '../helpers/firebase';
-import { useAuthContext } from '../context/AuthProvider';
 
 const initialState = {
     title: '',
@@ -86,15 +85,27 @@ function ChildModal({
                         flexDirection: 'column',
                         justifyContent: 'center',
                         alignItems: 'center',
+                        rowGap: '5px',
                     }}>
                     <Button
                         size={'small'}
                         variant="contained"
-                        sx={{ backgroundColor: 'green' }}
+                        sx={{
+                            backgroundColor: 'green',
+                            '&:hover': {
+                                background: '#000',
+                            },
+                        }}
                         onClick={handleOpenChild}>
                         extra hinzufügen
                     </Button>
-                    <Box sx={{ display: 'flex', width: '100%' }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            width: '100%',
+                            columnGap: '3px',
+                            justifyContent: 'space-around',
+                        }}>
                         <Button
                             size={'small'}
                             type="submit"
@@ -102,6 +113,10 @@ function ChildModal({
                                 backgroundColor: 'blue',
                                 color: 'white',
                                 width: '50%',
+                                maxWidth: '150px',
+                                '&:hover': {
+                                    background: '#000',
+                                },
                             }}
                             onClick={(e) => handleSubmit(e)}>
                             aktualisieren
@@ -113,6 +128,10 @@ function ChildModal({
                                 backgroundColor: 'red',
                                 color: 'white',
                                 width: '50%',
+                                maxWidth: '150px',
+                                '&:hover': {
+                                    background: '#000',
+                                },
                             }}
                             onClick={handleDelete}>
                             löschen
@@ -126,7 +145,7 @@ function ChildModal({
                 onClose={handleCloseChild}
                 aria-labelledby="child-modal-title"
                 aria-describedby="child-modal-description">
-                <Box sx={{ ...style, width: '100%' }}>
+                <Box sx={{ ...style, width: '100%', maxWidth: '600px' }}>
                     <TextField
                         sx={{ width: '100%' }}
                         variant="outlined"
@@ -163,6 +182,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '90%',
+    maxWidth: '650px',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -176,7 +196,6 @@ const style = {
 
 export default function AddModal({ item, heading, setData, data }) {
     const { extra, inhalt, id, title } = item;
-    const { currentUser } = useAuthContext();
 
     const [open, setOpen] = useState(false);
     const [checked, setChecked] = useState(false);
@@ -187,7 +206,7 @@ export default function AddModal({ item, heading, setData, data }) {
         preise: item?.preise || ['', ''],
         inhalt: inhalt,
         allergene: item?.allergene,
-        extra,
+        extra: extra || [],
         menu: checked,
     });
 

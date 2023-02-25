@@ -10,6 +10,7 @@ import {
     signInWithEmailAndPassword,
     onAuthStateChanged,
 } from 'firebase/auth';
+import { toastFailNotify, toastSuccessNotify } from './toastNotify';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -29,14 +30,17 @@ export const auth = getAuth(app);
 export const login = async (email, password, navigate) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
+        toastSuccessNotify('Herzlich Wilkommen!');
         navigate('/');
     } catch (error) {
         console.log(error);
+        toastFailNotify('Etwas schiefgelaufen :( Versuche nochmal!');
     }
 };
 export const logout = async () => {
     try {
         await signOut(auth);
+        toastSuccessNotify('Erfolgreich ausgeloggt..');
     } catch (error) {
         console.log(error);
     }
@@ -86,9 +90,10 @@ export const updateItem = async (id, value, colType) => {
 
     try {
         await updateDoc(docRef, data);
-        console.log('SENT');
+        toastSuccessNotify('Speise erfolgreich aktuailisiert..');
     } catch (error) {
         console.log(error);
+        toastFailNotify('Etwas schiefgelaufen :( Versuche nochmal!');
     }
 };
 
@@ -104,9 +109,10 @@ export const addItem = async (e, value, colType, setData, data) => {
     try {
         addDoc(colRef, newData);
         setData([...data, newData]);
-        console.log('posted');
+        toastSuccessNotify('Speise erfolgreich hinzugefügt..');
     } catch (error) {
         console.log(error);
+        toastFailNotify('Etwas schiefgelaufen :( Versuche nochmal!');
     }
 };
 
@@ -115,7 +121,9 @@ export const deleteItem = async (id, colType) => {
 
     try {
         deleteDoc(docRef);
+        toastSuccessNotify('Speise erfolgreich gelöscht..');
     } catch (error) {
         console.log(error);
+        toastFailNotify('Etwas schiefgelaufen :( Versuche nochmal!');
     }
 };

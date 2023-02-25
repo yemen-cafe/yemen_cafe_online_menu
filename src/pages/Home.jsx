@@ -6,6 +6,8 @@ import insta from '../assets/img/insta.png';
 import facebook from '../assets/img/facebook.png';
 import { getMenu } from '../helpers/firebase';
 import MenuComp from '../components/MenuComp';
+import Footer from '../components/Footer';
+import Loading from '../components/Loading';
 
 const Home = () => {
     const [breakfastData, setBreakfastData] = useState([]);
@@ -24,32 +26,71 @@ const Home = () => {
     const [specialKaffee, setSpecialKaffee] = useState([]);
     const [desserts, setDesserts] = useState([]);
     const [kunefe, setKunefe] = useState([]);
+    //LOADING STATE
+    const [loading, setLoading] = useState(true);
+
+    const setDataArr = [
+        setBreakfastData,
+        setToastData,
+        setHauptspeisenData,
+        setGrillData,
+        setPastaData,
+        setSalateData,
+        setSandwichesData,
+        setKinderMenuData,
+        setBeilagenData,
+        setTurkischeKaffeeData,
+        setHeissGetranke,
+        setCocktailAndShake,
+        setKalteGetranke,
+        setSpecialKaffee,
+        setDesserts,
+        setKunefe,
+    ];
+    // useEffect(() => {
+    //     setLoading(true);
+    //     setTimeout(() => {
+    //         setLoading(false);
+    //     }, 1000);
+    // }, []);
 
     useEffect(() => {
-        getMenu('frühstück').then((res) => setBreakfastData(res));
-        getMenu('toast').then((res) => setToastData(res));
-        getMenu('hauptspeisen').then((res) => setHauptspeisenData(res));
-        getMenu('grill').then((res) => setGrillData(res));
-        getMenu('pasta').then((res) => setPastaData(res));
-        getMenu('salate').then((res) => setSalateData(res));
-        getMenu('sandwiches').then((res) => setSandwichesData(res));
-        getMenu('Kinder menu').then((res) => setKinderMenuData(res));
-        getMenu('beilagen').then((res) => setBeilagenData(res));
-        getMenu('türkische kaffee').then((res) => setTurkischeKaffeeData(res));
-        getMenu('heißgetränke').then((res) => setHeissGetranke(res));
-        getMenu('cocktail & shake').then((res) => setCocktailAndShake(res));
-        getMenu('kalte getränke').then((res) => setKalteGetranke(res));
-        getMenu('kaffee sorten').then((res) => setSpecialKaffee(res));
-        getMenu('desserts').then((res) => setDesserts(res));
-        getMenu('künefe & katmer').then((res) => setKunefe(res));
+        Promise.all([
+            getMenu('frühstück'),
+            getMenu('toast'),
+            getMenu('hauptspeisen'),
+            getMenu('grill'),
+            getMenu('pasta'),
+            getMenu('salate'),
+            getMenu('sandwiches'),
+            getMenu('Kinder menu'),
+            getMenu('beilagen'),
+            getMenu('türkische kaffee'),
+            getMenu('heißgetränke'),
+            getMenu('cocktail & shake'),
+            getMenu('kalte getränke'),
+            getMenu('kaffee sorten'),
+            getMenu('desserts'),
+            getMenu('künefe & katmer'),
+        ])
+            .then((values) => {
+                for (let i = 0; i < values.length; i++) {
+                    setDataArr[i](values[i]);
+                }
+            })
+            .then(() => setLoading(false));
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
 
     return (
         <Box sx={{ backgroundColor: '#000' }}>
+            {loading && <Loading />}
+
             <Box
                 sx={{
                     width: '100%',
@@ -107,7 +148,7 @@ const Home = () => {
                                     marginRight: '4px',
                                 }}
                             />
-                            <span>yemenkahvesiwien</span>
+                            {/* <span>yemenkahvesiwien</span> */}
                         </Link>
                         <Link
                             sx={{
@@ -127,7 +168,7 @@ const Home = () => {
                                     marginRight: '4px',
                                 }}
                             />
-                            <span>yemenkahvesi_wien</span>
+                            {/* <span>yemenkahvesi_wien</span> */}
                         </Link>
                         <Link
                             sx={{
@@ -147,7 +188,7 @@ const Home = () => {
                                     marginRight: '4px',
                                 }}
                             />
-                            <span>yemenkaffeewien</span>
+                            {/* <span>yemenkaffeewien</span> */}
                         </Link>
                     </Box>
                 </Box>
@@ -238,6 +279,7 @@ const Home = () => {
                 setData={setSpecialKaffee}
                 heading={'Kaffee Sorten'}
             />
+            <Footer />
         </Box>
     );
 };

@@ -24,6 +24,7 @@ const MenuItem = ({ item, heading }) => {
                     'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',
 
                 borderBottom: '0.2rem solid #000',
+                width: { md: '45%', sm: '80%' },
             }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography
@@ -172,7 +173,8 @@ const MenuComp = ({ heading, data, setData }) => {
                 <Box
                     sx={{
                         display: 'flex',
-                        flexDirection: 'column',
+                        flexDirection: { xs: 'column', md: 'row' },
+                        flexWrap: 'wrap',
                         rowGap: '5px',
                     }}>
                     {data?.map((item, i) => (

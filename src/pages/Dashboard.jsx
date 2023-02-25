@@ -9,7 +9,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import LogoutIcon from '@mui/icons-material/Logout';
-
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
@@ -22,7 +21,8 @@ import sandwich from '../assets/mealImg/clubsandwich-1.jpg';
 import haupt from '../assets/mealImg/haupt2.jpg';
 import pasta from '../assets/mealImg/pasta3.jpg';
 import salat from '../assets/mealImg/salat1.jpg';
-import grill from '../assets/mealImg/kinder5.jpg';
+import grill from '../assets/mealImg/grill4.jpg';
+import kind from '../assets/mealImg/kinder4.jpg';
 import beilage from '../assets/mealImg/beilage1.jpeg';
 import heiss from '../assets/mealImg/herbal1.jpg';
 import t_kaffee from '../assets/mealImg/t-kaffee2.jpg';
@@ -57,7 +57,7 @@ const Dashboard = (props) => {
                     { name: 'Pasta', img: pasta },
                     { name: 'Salate', img: salat },
                     { name: 'Grill', img: grill },
-                    { name: 'Kinder Menu', img: grill },
+                    { name: 'Kinder Menu', img: kind },
                     { name: 'Beilagen', img: beilage },
                     { name: 'Heißgetränke', img: heiss },
 
